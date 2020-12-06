@@ -14,3 +14,6 @@ if __name__ == '__main__':
 	print(table.get_value_by_key(121))
 	print(table.get_value_by_key(125))
 	print(table._table)
+	table.remove_value_by_key(123)
+	print(table.get_value_by_key(123))
+	print(table._table)

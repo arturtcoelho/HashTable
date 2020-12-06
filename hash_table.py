@@ -68,3 +68,15 @@ class HashTable():
 			return 1
 		
 		return 0
+
+	def remove_value_by_key(self, key):
+		index = self._hash_by_string(key)
+		if index == None: 
+			print("Index Error")
+			return 0
+
+		l = self._table[index]
+		l = list(filter(lambda t: t[0] != key, l))
+		self._table[index] = l
+		
+		return 1
