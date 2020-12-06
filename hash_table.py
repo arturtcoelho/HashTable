@@ -7,8 +7,9 @@ class HashTable():
 	_table = [[] for i in range(TABLE_SIZE)]
 	stored = 0
 
-	def __init__(self):
-		return
+	def __init__(self, size = None):
+		if size != None:
+			self.TABLE_SIZE = size
 
 	def _hash_by_string(self, key):
 		hash = self.HASH_PRIMES[0]
