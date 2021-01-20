@@ -13,9 +13,10 @@ struct node {
 
 typedef struct node node_t;
 
-void list_destroy(node_t *n);
-void list_insert(node_t **n, hash_index_t key);
-void list_remove(node_t **n, hash_index_t key);
-void list_print(node_t *n);
+void list_destroy(node_t*);
+void list_insert(node_t**, hash_index_t, hash_value_t);
+void list_remove(node_t**, hash_index_t);
+hash_value_t list_find(node_t*, hash_index_t);
+void list_print(node_t*);
 
 #endif

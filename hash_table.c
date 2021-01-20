@@ -47,14 +47,22 @@ hash_index_t hash_function(hash_table_t *h, hash_key_t key)
     return hash % h->size;
 }
 
-void hash_table_insert(hash_key_t key)
+hash_value_t hash_table_find(hash_table_t *h, hash_key_t key)
 {
-
+    hash_index_t index = hash_function(h, key);
+    return list_find(h->table[index], index);
 }
 
-void hash_table_remove(hash_key_t key)
+void hash_table_insert(hash_table_t *h, hash_key_t key, hash_value_t value)
 {
+    hash_index_t index = hash_function(h, key);
+    list_insert(&(h->table[index]), index, value);
+}
 
+void hash_table_remove(hash_table_t *h, hash_key_t key)
+{
+    hash_index_t index = hash_function(h, key);
+    list_remove(&(h->table[index]), index);
 }
 
 void hash_table_print(hash_table_t *h)
@@ -74,10 +82,24 @@ void hash_table_destroy(hash_table_t *h)
 int main ()
 {
 
-    hash_table_t h1;
-    hash_table_create(&h1, 0);
-    hash_table_print(&h1);
-    hash_table_destroy(&h1);
+    hash_table_t h;
+    hash_table_create(&h, 0);
+    char s[10];
+    for (int i = 0; i < 1000; i++){
+        sprintf(s, "%d", i);
+        hash_table_insert(&h, s, i);
+    }
+    for (int i = 0; i < 1000; i++){
+        sprintf(s, "%d", i);
+        hash_table_find(&h, s);
+    }
+    // hash_table_print(&h);
+    for (int i = 0; i < 1000; i+=2){
+        sprintf(s, "%d", i);
+        hash_table_remove(&h, s);
+    }
+    // hash_table_print(&h);
+    hash_table_destroy(&h);
 
     return 0;
 }

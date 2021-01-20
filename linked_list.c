@@ -15,15 +15,13 @@ void list_destroy(node_t *n)
     free(n);
 }
 
-void list_insert(node_t **n, hash_index_t key)
+void list_insert(node_t **n, hash_index_t key, hash_value_t value)
 {
-    if (!*n) {
-        return;
-    }
     node_t *temp = *n;
 
     *n = malloc(sizeof(node_t));
     (*n)->key = key;
+    (*n)->value = value;
     (*n)->next = temp;
 }
 
@@ -41,15 +39,27 @@ void list_remove(node_t **n, hash_index_t key)
     list_remove(&(*n)->next, key);
 }
 
+hash_value_t list_find(node_t *n, hash_index_t key)
+{
+    if (!n) {
+        return 0;
+    }
+    if (n->key == key) {
+        return n->value;
+    }
+    return list_find(n->next, key);
+}
+
 void list_print(node_t *n)
 {
     if (!n) {
+        printf("-");
         return;
     }
+    printf("%d ", n->value);
     if (!n->next) {
-        printf("\n");
+        printf(" ");
         return;
     }
-    printf("%d ", n->key);
     list_print(n->next);
 }
