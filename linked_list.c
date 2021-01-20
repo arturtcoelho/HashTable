@@ -4,17 +4,6 @@
 
 #include "linked_list.h"
 
-void list_create(node_t **n)
-{
-    *n = malloc(sizeof(node_t));
-    if (!*n) {
-        fprintf(stderr, "bad malloc\n");
-        exit(1);
-    }
-    (*n)->key = 0;
-    (*n)->next = NULL;
-}
-
 void list_destroy(node_t *n)
 {
     if (!n) {
@@ -26,7 +15,7 @@ void list_destroy(node_t *n)
     free(n);
 }
 
-void list_insert(node_t **n, key_t key)
+void list_insert(node_t **n, hash_index_t key)
 {
     if (!*n) {
         return;
@@ -38,7 +27,7 @@ void list_insert(node_t **n, key_t key)
     (*n)->next = temp;
 }
 
-void list_remove(node_t **n, key_t key)
+void list_remove(node_t **n, hash_index_t key)
 {
     if (!*n) {
         return;;
@@ -54,6 +43,9 @@ void list_remove(node_t **n, key_t key)
 
 void list_print(node_t *n)
 {
+    if (!n) {
+        return;
+    }
     if (!n->next) {
         printf("\n");
         return;
