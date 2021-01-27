@@ -93,7 +93,7 @@ int main ()
         sprintf(s, "%d", i);
         hash_table_find(&h, s);
     }
-    // hash_table_print(&h);
+    hash_table_print(&h);
     for (int i = 0; i < 1000; i+=2){
         sprintf(s, "%d", i);
         hash_table_remove(&h, s);

@@ -1,32 +1,35 @@
 #!/usr/bin/env python3
 
+import math
+
 class HashTable():
 	
-	TABLE_SIZE = 1000
+	TABLE_SIZE = 11
 	HASH_PRIMES = (19, 101, 17)
-	_table = [[] for i in range(TABLE_SIZE)]
-	stored = 0
+	t1 = [[] for i in range(TABLE_SIZE)]
+	t2 = [[] for i in range(TABLE_SIZE)]
 
 	def __init__(self, size = None):
 		if size != None:
 			self.TABLE_SIZE = size
 
-	def _hash_by_string(self, key):
-		hash = self.HASH_PRIMES[0]
+	def h1(self, key):
 		try: 
-			key = str(key)
+			key = int(key)
 		except: 
 			print("Key type error")
 			return None
 
-		old_c = self.HASH_PRIMES[2]
-		for i in key:
-			c = ord(i)
-			hash += (self.HASH_PRIMES[1] * c * old_c)
-			old_c = c
+		return key % self.TABLE_SIZE
 
-		# return hash
-		return hash % self.TABLE_SIZE
+	def h2(self, key):
+		try: 
+			key = float(key)
+		except: 
+			print("Key type error")
+			return None
+
+		return math.floor(self.TABLE_SIZE * (key * 0.9 - math.floor(key * 0.9)))
 
 	def add_value_with_key(self, key, value):
 		index = self._hash_by_string(key)
