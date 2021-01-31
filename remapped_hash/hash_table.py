@@ -5,7 +5,6 @@ import math
 class HashTable():
 	
 	TABLE_SIZE = 11
-	HASH_PRIMES = (19, 101, 17)
 	t1 = [None for _ in range(TABLE_SIZE)]
 	t2 = [None for _ in range(TABLE_SIZE)]
 
