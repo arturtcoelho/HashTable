@@ -7,12 +7,6 @@
 
 #define MAX_IN 8
 
-typedef struct {
-	int n;
-	char t;
-	int i;
-} print_table_t;
-
 void hash_initialize(table_t *t)
 {
     t->t1 = malloc(TABLE_SIZE * sizeof(int));
