@@ -158,7 +158,7 @@ int main()
 	int n = atoi(&in[2]);
 
 	// main loop
-	while (c != '\n') {
+	while (c != '\n' && !feof(stdin)) {
 		if (c == 'i') {
 			hash_insert(&ht, n);
 		} else {
